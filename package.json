@@ -21,9 +21,9 @@
 		"@types/node": "^24.2.0",
 		"fastify": "^5.4.0",
 		"highlight.js": "^11.11.1",
-		"sass": "^1.89.2",
+		"sass": "^1.90.0",
 		"typescript": "^5.8.3",
-		"vite": "^7.0.5"
+		"vite": "^7.0.6"
 	},
 	"engines": {
 		"node": ">=20"
