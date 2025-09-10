@@ -16,8 +16,8 @@ localStorage.directory_view ??= "grid";
 
 function createGridView(items: Record<string, boolean>) {
 	import("../../../css/directory/grid.scss").catch((error: unknown) => {
-		console.error(error);
-		throw new Error("Failed to load css file");
+		console.error("[directory/grid] failed to load css file:");
+		throw error;
 	});
 	main.classList.add("grid");
 
@@ -30,8 +30,8 @@ function createGridView(items: Record<string, boolean>) {
 
 function createListView(items: Record<string, boolean>) {
 	import("../../../css/directory/list.scss").catch((error: unknown) => {
-		console.error(error);
-		throw new Error("Failed to load css file");
+		console.error("[directory/list] failed to load css file:");
+		throw error;
 	});
 	main.classList.add("list");
 

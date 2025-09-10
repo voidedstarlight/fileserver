@@ -48,8 +48,8 @@ function closeContextMenu() {
 	animation.finished.then(() => {
 		menu.style.display = "none";
 	}).catch((error: unknown) => {
-		console.error(error);
-		throw new Error("Failed to play closing animation for context menu");
+		console.error("[menu/close] failed to play animation:");
+		throw error;
 	});
 
 	return animation.finished;
@@ -77,8 +77,8 @@ function appendMenuEntries(entries: MenuEntries) {
 			}
 
 			closeContextMenu().catch((error: unknown) => {
-				console.error(error);
-				throw new Error("Failed to play closing animation for context menu");
+				console.error("[menu/close] failed to play animation:");
+				throw error;
 			});
 		});
 
@@ -94,8 +94,8 @@ export default function createContextMenu(
 		closeContextMenu().then(() => {
 			createContextMenu(event, entries);
 		}).catch((error: unknown) => {
-			console.error(error);
-			throw new Error("Failed to play closing animation for context menu");
+			console.error("[menu/close] failed to play animation:");
+			throw error;
 		});
 
 		return;
@@ -132,8 +132,8 @@ document.addEventListener("mousedown", event => {
 		}
 
 		closeContextMenu().catch((error: unknown) => {
-			console.error(error);
-			throw new Error("Failed to play closing animation for context menu");
+			console.error("[menu/close] failed to play animation:");
+			throw error;
 		});
 	}
 });

@@ -20,8 +20,10 @@ async function uploadTransferItem(file: File, path: string) {
 					},
 					method: "POST"
 				}).then(resolve).catch((error: unknown) => {
-					console.error(error);
-					throw new Error(error);
+					console.error(
+						"[directory/upload] could not request API endpoint to upload:"
+					);
+					throw error;
 				});
 			}
 		});
@@ -120,8 +122,8 @@ export function prepareUploadElement() {
 
 		if (event.dataTransfer) {
 			parseDroppedItems(event.dataTransfer.items).catch((error: unknown) => {
-				console.error(error);
-				throw new Error("Failed to parse dropped items");
+				console.error("[directory/upload] could not parse dropped items:");
+				throw error;
 			});
 		}
 	}, true);

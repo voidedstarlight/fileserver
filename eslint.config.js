@@ -45,7 +45,7 @@ export default tseslint.config(
 			"@stylistic/eol-last": ["error"],
 			"@stylistic/function-call-argument-newline": ["error", "consistent"],
 			"@stylistic/function-call-spacing": ["error"],
-			"@stylistic/function-paren-newline": ["error"],
+			"@stylistic/function-paren-newline": ["error", "consistent"],
 			"@stylistic/generator-star-spacing": ["error", "after"],
 			"@stylistic/implicit-arrow-linebreak": ["error"],
 			"@stylistic/indent": ["error", "tab"],

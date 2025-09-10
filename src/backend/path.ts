@@ -16,7 +16,7 @@ function getServingDirectory() {
 			try {
 				mkdirSync(default_path);
 			} catch (error: unknown) {
-				console.error("Error in creating store directory:");
+				console.error("[api/path] error in creating store directory:");
 				throw error;
 			}
 		}

@@ -42,7 +42,7 @@ function deleteFiles(filenames: string[]) {
 	Promise.all(requests).then(() => {
 		document.location.reload();
 	}).catch((error: unknown) => {
-		console.error("Error in deleting files");
+		console.error("[directory/file] could not delete files:");
 		throw error;
 	});
 }

@@ -35,8 +35,8 @@ function loadElement(element: HTMLElement) {
 
 export default async function loadFile() {
 	import("../../../css/file/index.scss").catch((error: unknown) => {
-		console.error(error);
-		throw new Error("Failed to load css file");
+		console.error("[file/init] failed to load css file:");
+		throw error;
 	});
 
 	initiateSidebar();
@@ -114,8 +114,8 @@ export default async function loadFile() {
 	try {
 		loadElement(await content as HTMLElement);
 	} catch (error: unknown) {
-		console.error(error);
-		throw new Error(`Loader failed for filetype ${format}`, { cause: error });
+		console.error(`[file/loader] failed to load filetype ${format}`);
+		throw error;
 	}
 
 	download_iframe = initiateDownloader();
