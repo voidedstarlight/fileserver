@@ -115,7 +115,7 @@ export default async function loadFile() {
 		loadElement(await content as HTMLElement);
 	} catch (error: unknown) {
 		console.error(error);
-		throw new Error(`Loader failed for filetype ${format}`);
+		throw new Error(`Loader failed for filetype ${format}`, { cause: error });
 	}
 
 	download_iframe = initiateDownloader();

@@ -165,7 +165,7 @@ const start = async () => {
 		});
 	} catch (error) {
 		server.log.error(error);
-		throw new Error("Failed to start server");
+		throw new Error("Failed to start server", { cause: error });
 	}
 };
 

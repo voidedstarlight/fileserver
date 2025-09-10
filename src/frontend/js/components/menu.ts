@@ -8,7 +8,7 @@ interface EntryData {
 	classes?: string[];
 	display_name?: string;
 	id?: string;
-	pressed_callback?: (() => void);
+	pressed_callback?: () => void;
 }
 
 export type MenuEntries = EntryData[];

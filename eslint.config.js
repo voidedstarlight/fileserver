@@ -82,8 +82,7 @@ export default tseslint.config(
 				"error",
 				"all",
 				{
-					enforceForArrowConditionals: false,
-					nestedBinaryExpressions: false
+					ignoredNodes: ["ArrowFunctionExpression[body.type=ConditionalExpression]"]
 				}
 			],
 			"@stylistic/no-extra-semi": ["error"],
