@@ -35,10 +35,9 @@ if (!uchardet_available) {
 }
 
 if (!existsSync(serving_directory)) {
-	console.error(
+	throw new Error(
 		`[api/path] serving directory does not exist: ${serving_directory}`
 	);
-	process.exit(1);
 }
 
 server.register(fastifyCompress, {
