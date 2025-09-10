@@ -15,7 +15,8 @@ async function getExtensionsMap(): Promise<Record<string, string>> {
 			extensions = data as Record<string, string>;
 			resolve(extensions);
 		}).catch(() => {
-			throw new Error("Failed to retrieve extensions data");
+			console.error("[filetype/extensions] failed to retrieve extensions data");
+			resolve({});
 		});
 	});
 }

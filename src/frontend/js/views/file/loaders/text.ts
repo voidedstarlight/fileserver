@@ -5,8 +5,8 @@ export default async function load(
 	language?: string
 ): Promise<HTMLPreElement> {
 	import("../../../../css/file/loaders/text.scss").catch((error: unknown) => {
-		console.error(error);
-		throw new Error("Failed to load css file");
+		console.error("[file/text] failed to load css file:");
+		throw error;
 	});
 
 	const data = await (await fetch(source)).text();

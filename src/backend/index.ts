@@ -35,7 +35,9 @@ if (!uchardet_available) {
 }
 
 if (!existsSync(serving_directory)) {
-	throw new Error("Invalid serving directory");
+	throw new Error(
+		`[api/path] serving directory does not exist: ${serving_directory}`
+	);
 }
 
 server.register(fastifyCompress, {
@@ -164,8 +166,8 @@ const start = async () => {
 			port: 8192
 		});
 	} catch (error) {
-		server.log.error(error);
-		throw new Error("Failed to start server");
+		server.log.error("[api/server] failed to start:");
+		throw error;
 	}
 };
 

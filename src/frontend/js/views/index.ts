@@ -32,14 +32,14 @@ fetch(`/data${current_path}`).then(async response => {
 
 	if (data.type === "directory") {
 		import("../../css/directory/popup.scss").catch((error: unknown) => {
-			console.error(error);
-			throw new Error("Failed to load css file");
+			console.error("[view/init] failed to load css file:");
+			throw error;
 		});
 		loadDirectory(data);
 	} else {
 		await loadFile();
 	}
 }).catch((error: unknown) => {
-	console.error(error);
-	throw new Error("Failed to retrieve data for current path");
+	console.error("[view/init] could not retrive data for current path:");
+	throw error;
 });
