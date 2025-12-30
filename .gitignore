@@ -1,8 +1,8 @@
+dist
 .env
 
-node_modules/
+/node_modules
 
 store
 tmp
-
-build
+srv

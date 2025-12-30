@@ -1,8 +1,5 @@
 {
-	"files": [],
-	"references": [
-		{
-			"path": "./src/backend"
-		}
-	]
+  "compilerOptions": {
+		"sourceMap": true
+  }
 }
