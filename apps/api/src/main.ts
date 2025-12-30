@@ -3,7 +3,7 @@ import fastifyCompress from "@fastify/compress";
 import fastifyStatic from "@fastify/static";
 import fastifyWebsocket from "@fastify/websocket";
 
-import { resolve } from "path";
+import { join } from "path";
 import { readFileSync } from "fs";
 
 import { isFile, listDirectory } from "./fs";
@@ -25,7 +25,7 @@ server.register(fastifyCompress, {
 server.register(fastifyStatic, {
 	decorateReply: false,
 	prefix: "/",
-	root: resolve(process.cwd(), "dist/web")
+	root: join(__dirname, "public")
 })
 
 server.register(fastifyWebsocket);
@@ -45,7 +45,7 @@ server.register(async () => {
 		url: "/",
 		handler: (_, reply) => {
 			reply.type("text/html");
-			return readFileSync(resolve(process.cwd(), "dist/web/index.html"))
+			return readFileSync(join(__dirname, "public/index.html"))
 		},
 		wsHandler: socket => {
 			socket.on("message", message => {
@@ -65,16 +65,13 @@ server.register(async () => {
 	});
 });
 
-const start = async () => {
-	try {
-		await server.listen({
-			host: "0.0.0.0",
-			port: 8192
-		});
-	} catch (error) {
-		server.log.error(error);
+server.listen({
+	host: "0.0.0.0",
+	port: 8192
+}, err => {
+	if (err) {
 		throw new Error("Failed to start server");
 	}
-};
 
-await start();
+	server.log.info("[server] http://0.0.0.0:8192");
+});

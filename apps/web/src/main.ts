@@ -2,7 +2,7 @@ import route from "./routing";
 import loadFile from "./file/view";
 import loadDirectory from "./directory/view";
 
-import "./index.scss";
+import "./index.css";
 
 import {
 	isFile,

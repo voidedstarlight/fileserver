@@ -3,7 +3,7 @@ const { rspack } = require("@rspack/core");
 
 module.exports = {
   entry: {
-    main: "./apps/web/src/main.ts",
+    main: "./src/main.ts",
   },
   experiments: {
     css: true
@@ -27,33 +27,32 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           {
-            loader: "sass-loader",
-            options: {
-              api: "modern-compiler",
-              implementation: require.resolve("sass-embedded")
-            }
+						loader: "builtin:lightningcss-loader",
+						options: {
+							targets: ">0.5%"
+						}
           }
         ],
         type: "css/auto"
       }
     ]
   },
-  output: {
-    path: resolve(process.cwd(), "dist/web")
-  },
   plugins: [
     new rspack.HtmlRspackPlugin({
-      template: "apps/web/src/index.html"
+      template: "./src/index.html"
     }),
     new rspack.CopyRspackPlugin({
       patterns: [{
-        from: "apps/web/public"
+        from: "./public"
       }]
     })
   ],
+  output: {
+    path: resolve(process.cwd(), "../../dist/public")
+  },
   resolve: {
     extensions: [".js", ".ts", ".json"]
   }

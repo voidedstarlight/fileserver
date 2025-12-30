@@ -1,0 +1,13 @@
+{
+	"devDependencies": {
+		"@tsconfig/recommended": "^1.0.10",
+		"@rspack/cli": "^1.5.8",
+		"@rspack/core": "^1.5.8"
+	},
+	"name": "@fileserver/web",
+	"scripts": {
+		"build": "rspack build",
+		"dev": "rspack build -w"
+	},
+	"version": "0.0.1"
+}
