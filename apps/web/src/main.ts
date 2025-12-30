@@ -5,6 +5,8 @@ import loadFile from "./views/file/index";
 
 import "./components/menu";
 
+import "./layout.css";
+
 interface DirectoryData {
 	data: Record<string, boolean>;
 	type: "directory";
@@ -31,10 +33,6 @@ fetch(`/data${current_path}`).then(async response => {
 	const data = await response.json() as DirectoryData | FileData;
 
 	if (data.type === "directory") {
-		import("./layout.css").catch((error: unknown) => {
-			console.error("[view/init] failed to load css file:");
-			throw error;
-		});
 		loadDirectory(data);
 	} else {
 		await loadFile();
