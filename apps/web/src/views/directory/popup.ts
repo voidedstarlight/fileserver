@@ -9,6 +9,11 @@ export function createPopup(
 	description: string,
 	buttons?: Array<ButtonData>
 ) {
+	import("./popup.css").catch((error: unknown) => {
+		console.error("[directory/popup] failed to load css file:");
+		throw error;
+	});
+
 	const popup = document.createElement("div");
 	popup.classList.add("popup");
 	document.body.appendChild(popup);
