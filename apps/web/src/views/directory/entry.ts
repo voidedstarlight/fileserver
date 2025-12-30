@@ -102,7 +102,7 @@ export function appendListViewEntry(name: string, is_directory: boolean) {
 	const file_icon = document.createElement("img");
 
 	if (is_directory) {
-		file_icon.src = "/static/img/directory.svg";
+		file_icon.src = directory_icon;
 	} else {
 		file_icon.src = assignFileIcon(name);
 	}
