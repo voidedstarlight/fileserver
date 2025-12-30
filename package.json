@@ -19,7 +19,8 @@
 		"dev:api": "npm run dev -w @fileserver/api",
 		"dev:web": "npm run dev -w @fileserver/web",
 		"dev": "concurrently -n 'API,WEB' -c 'bgBlue.black,bgMagentaBright.black' 'npm run dev:api' 'npm run dev:web'",
-		"lint": "eslint apps"
+		"lint": "eslint apps",
+		"start": "node dist/serve.js"
 	},
 	"version": "0.0.1",
 	"workspaces": [

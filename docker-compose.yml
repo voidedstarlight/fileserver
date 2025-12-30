@@ -2,8 +2,10 @@ services:
   web:
     build: .
     container_name: fileserver
+    image: fileserver:0.0.1
     ports:
       - "8192:8192"
+    pull_policy: build
     restart: always
     volumes:
       - ${SERVE_DIRECTORY}:/store
