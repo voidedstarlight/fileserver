@@ -11,9 +11,9 @@
 		"tsc-watch": "^7.2.0"
 	},
 	"name": "@fileserver/api",
-	"main": "index.js",
+	"main": "serve.js",
 	"scripts": {
-		"dev": "tsc-watch --compileCommand tsgo --onSuccess 'node ../../dist/main.js'",
+		"dev": "tsc-watch --compileCommand tsgo --onSuccess 'node ../../dist/serve.js'",
 		"build": "tsc"
 	},
 	"version": "0.0.1"

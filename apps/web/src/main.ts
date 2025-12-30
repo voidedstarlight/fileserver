@@ -1,20 +1,45 @@
-import route from "./routing";
-import loadFile from "./file/view";
-import loadDirectory from "./directory/view";
+import createErrorElement from "./error";
+import current_path from "./util/path";
+import loadDirectory from "./views/directory/index";
+import loadFile from "./views/file/index";
 
-import "./index.css";
+import "./components/menu";
 
-import {
-	isFile,
-	listDirectory
-} from "./api";
+interface DirectoryData {
+	data: Record<string, boolean>;
+	type: "directory";
+}
 
-void isFile(route).then(is_file => {
-	if (is_file) {
-		loadFile({});
-	} else {
-		void listDirectory(route).then(dir_items => {
-			loadDirectory(dir_items);
-		});
+interface FileData {
+	encoding: string;
+	size: number;
+	type: "file";
+}
+
+const title_element = document.getElementsByTagName("title")[0];
+
+if (title_element) {
+	title_element.innerText = `${current_path} on ${document.location.hostname}`;
+}
+
+fetch(`/data${current_path}`).then(async response => {
+	if (!response.ok) {
+		createErrorElement(response.status);
+		return;
 	}
+
+	const data = await response.json() as DirectoryData | FileData;
+
+	if (data.type === "directory") {
+		import("./layout.css").catch((error: unknown) => {
+			console.error("[view/init] failed to load css file:");
+			throw error;
+		});
+		loadDirectory(data);
+	} else {
+		await loadFile();
+	}
+}).catch((error: unknown) => {
+	console.error("[view/init] could not retrive data for current path:");
+	throw error;
 });

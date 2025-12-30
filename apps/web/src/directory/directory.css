@@ -1,9 +1,0 @@
-.dir-root {
-	display: flex;
-	flex-direction: row;
-}
-
-.dir-item {
-	height: 10em;
-	width: 6em;
-}

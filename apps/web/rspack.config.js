@@ -51,8 +51,13 @@ module.exports = {
     })
   ],
   output: {
-    path: resolve(process.cwd(), "../../dist/public")
+    path: resolve(process.cwd(), "../../dist/public"),
+		publicPath: "/a/"
   },
+	performance: {
+		maxAssetSize:      2000000,
+		maxEntrypointSize: 2000000
+	},
   resolve: {
     extensions: [".js", ".ts", ".json"]
   }
