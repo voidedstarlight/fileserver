@@ -29,7 +29,11 @@ function createGridView(items: Record<string, boolean>) {
 }
 
 function createListView(items: Record<string, boolean>) {
+<<<<<<< HEAD:apps/web/src/views/directory/view.ts
 	import("./list.css").catch((error: unknown) => {
+=======
+	import("../../../css/directory/list.scss").catch((error: unknown) => {
+>>>>>>> main:src/frontend/js/views/directory/view.ts
 		console.error("[directory/list] failed to load css file:");
 		throw error;
 	});

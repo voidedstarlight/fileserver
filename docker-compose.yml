@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    container_name: fileserver
+    ports:
+      - "8192:8192"
+    restart: always
+    volumes:
+      - ${SERVE_DIRECTORY}:/store

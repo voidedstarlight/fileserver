@@ -1,6 +1,8 @@
 dist
+.env
+
+/node_modules
+
+store
 tmp
-
-node_modules
-
 srv
