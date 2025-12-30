@@ -41,7 +41,7 @@ main pre {
 	color: #888;
 }
 
-.hljs-built_in, // stylelint-disable-line selector-class-pattern
+.hljs-built_in,
 .hljs-selector-tag,
 .hljs-name,
 .hljs-literal,
