@@ -37,7 +37,11 @@ module.exports = {
           }
         ],
         type: "css/auto"
-      }
+      },
+			{
+				test: /\.svg$/,
+				type: "asset"
+			}
     ]
   },
   plugins: [

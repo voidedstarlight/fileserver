@@ -1,4 +1,6 @@
 import current_path from "../util/path";
+import home_icon from "./home.svg";
+import documents_icon from "./documents.svg";
 
 import { main } from "../util/dom/sectioning";
 
@@ -101,13 +103,13 @@ export function initiateSidebar() {
 	const locations_section = addSidebarSection("Locations");
 
 	addSidebarItem({
-		icon: "/static/img/icons/sidebar/home.svg",
+		icon: home_icon,
 		name: "Home",
 		path: "/"
 	}, locations_section);
 
 	addSidebarItem({
-		icon: "/static/img/icons/sidebar/documents.svg",
+		icon: documents_icon,
 		name: "Documents",
 		path: "/Documents"
 	}, locations_section);

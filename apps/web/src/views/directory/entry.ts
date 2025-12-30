@@ -6,6 +6,8 @@ import fileContextMenu from "./file_menu";
 import filetype from "../../util/filetype";
 import isEditing from "./edit";
 
+import directory_icon from "./directory.svg";
+
 function navigateToRelative(name: string) {
 	if (!isEditing()) {
 		let pathname = document.location.pathname;
@@ -27,11 +29,11 @@ function selectItem(button: number, element: HTMLElement) {
 function assignFileIcon(filename: string) {
 	for (const extension of ["jpeg", "jpg", "png", "rtf", "svg", "text", "txt"]) {
 		if (filename.endsWith(`.${extension}`)) {
-			return `/static/img/extensions/${extension}.svg`;
+			return `/a/img/extensions/${extension}.svg`;
 		}
 	}
 
-	return "/static/img/extensions/*.svg";
+	return "/a/img/extensions/*.svg";
 }
 
 export function appendGridViewEntry(name: string, is_directory: boolean) {
@@ -61,7 +63,7 @@ export function appendGridViewEntry(name: string, is_directory: boolean) {
 	const file_icon = document.createElement("img");
 
 	if (is_directory) {
-		file_icon.src = "/static/img/directory.svg";
+		file_icon.src = directory_icon;
 	} else {
 		file_icon.src = assignFileIcon(name);
 	}

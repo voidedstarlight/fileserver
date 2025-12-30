@@ -1,4 +1,6 @@
 import createDirectoryView from "./view";
+import grid_view_icon from "./grid_view.svg";
+import list_view_icon from "./list_view.svg";
 
 import {
 	addToolbarIcon,
@@ -18,7 +20,7 @@ interface DirectoryData {
 function populateToolbar() {
 	addToolbarStretch();
 
-	const grid_view_icon_path = "/static/img/icons/toolbar/grid_view.svg";
+	const grid_view_icon_path = grid_view_icon;
 	const grid_view = addToolbarIcon(grid_view_icon_path, () => {
 		if (localStorage.directory_view !== "grid") {
 			localStorage.directory_view = "grid";
@@ -26,7 +28,7 @@ function populateToolbar() {
 		}
 	}, "45%");
 
-	const list_view_icon_path = "/static/img/icons/toolbar/list_view.svg";
+	const list_view_icon_path = list_view_icon;
 	const list_view = addToolbarIcon(list_view_icon_path, () => {
 		if (localStorage.directory_view !== "list") {
 			localStorage.directory_view = "list";
