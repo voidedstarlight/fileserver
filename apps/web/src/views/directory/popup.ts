@@ -1,13 +1,13 @@
 interface ButtonData {
 	callback: (this: HTMLButtonElement, event: MouseEvent) => void;
-	classList?: string[];
+	classList?: Array<string>;
 	text: string;
 }
 
 export function createPopup(
 	title: string,
 	description: string,
-	buttons?: ButtonData[]
+	buttons?: Array<ButtonData>
 ) {
 	const popup = document.createElement("div");
 	popup.classList.add("popup");
@@ -47,7 +47,7 @@ export function createPopup(
 }
 
 export function closePopup() {
-	const popup = document.getElementsByClassName("popup")[0];
+	const popup = document.getElementsByClassName("popup").item(0);
 
 	if (popup) {
 		popup.remove();

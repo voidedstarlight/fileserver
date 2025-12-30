@@ -24,7 +24,7 @@ const source = `/raw${current_path}`;
 let download_iframe: HTMLIFrameElement;
 
 function loadElement(element: HTMLElement) {
-	const loading_element = document.getElementsByClassName("loading")[0];
+	const loading_element = document.getElementsByClassName("loading").item(0);
 
 	if (loading_element) {
 		loading_element.remove();

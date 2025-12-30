@@ -34,7 +34,6 @@ export function initializeTmp() {
 	mkdirSync("tmp");
 }
 
-
 export function registerDownloadHooks(server: FastifyInstance) {
 	server.get("/download/*", (request, reply) => {
 		const path = getScopedPath(decodeURIComponent(request.url.slice(9)), true);
@@ -58,7 +57,10 @@ export function registerDownloadHooks(server: FastifyInstance) {
 			return reply.send(data.contents);
 		}
 
-		reply.header("Content-Disposition", `attachment; filename="${filename}.zip"`);
+		reply.header(
+			"Content-Disposition",
+			`attachment; filename="${filename}.zip"`
+		);
 
 		const zip_path = `${process.cwd()}/tmp/${filename}.zip`;
 

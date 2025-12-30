@@ -29,7 +29,7 @@ function getContainer() {
 const container = getContainer();
 
 function getMainElement() {
-	const main = document.getElementsByTagName("main")[0];
+	const main = document.getElementsByTagName("main").item(0);
 
 	if (main) {
 		return main;

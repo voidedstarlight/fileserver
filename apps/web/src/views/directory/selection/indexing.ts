@@ -23,7 +23,6 @@ function indexOfElement(item: Element) {
 	return Array.prototype.indexOf.call(main.children, item);
 }
 
-
 function elementColumnIndex(element: Element) {
 	if (!isGridView()) {
 		return 0;

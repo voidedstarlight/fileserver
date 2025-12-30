@@ -12,7 +12,7 @@ function createSidebar() {
 }
 
 function getSidebar() {
-	const sidebar = document.getElementsByTagName("aside")[0];
+	const sidebar = document.getElementsByTagName("aside").item(0);
 
 	if (sidebar) {
 		return sidebar;
@@ -33,10 +33,10 @@ interface SectionItemData {
 
 interface SectionMap {
 	element: HTMLElement;
-	items: {
+	items: Array<{
 		element: HTMLElement;
 		data: SectionItemData;
-	}[];
+	}>;
 }
 
 const sections: Record<string, SectionMap> = {};
@@ -79,7 +79,7 @@ export function addSidebarItem(item: SectionItemData, section: HTMLElement) {
 	const section_title_element = section.children[0] as HTMLElement;
 	const section_name = section_title_element.innerText;
 
-	sections[section_name]?.items.push({
+	sections[section_name].items.push({
 		data: item,
 		element: link
 	});

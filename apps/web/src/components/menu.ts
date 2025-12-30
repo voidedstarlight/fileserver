@@ -5,13 +5,13 @@ import globalContextMenu from "../views/directory/global_menu";
 import { main } from "../util/dom/sectioning";
 
 interface EntryData {
-	classes?: string[];
+	classes?: Array<string>;
 	display_name?: string;
 	id?: string;
 	pressed_callback?: () => void;
 }
 
-export type MenuEntries = EntryData[];
+export type menu_entries = Array<EntryData>;
 
 function initializeContextMenu() {
 	const menu = document.createElement("div");
@@ -55,7 +55,7 @@ function closeContextMenu() {
 	return animation.finished;
 }
 
-function appendMenuEntries(entries: MenuEntries) {
+function appendMenuEntries(entries: menu_entries) {
 	for (const entry of entries) {
 		const entry_element = document.createElement("button");
 
@@ -88,7 +88,7 @@ function appendMenuEntries(entries: MenuEntries) {
 
 export default function createContextMenu(
 	event: MouseEvent,
-	entries: MenuEntries
+	entries: menu_entries
 ) {
 	if (menu.style.display === "flex") {
 		closeContextMenu().then(() => {

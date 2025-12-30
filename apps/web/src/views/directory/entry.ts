@@ -10,7 +10,7 @@ import directory_icon from "./directory.svg";
 
 function navigateToRelative(name: string) {
 	if (!isEditing()) {
-		let pathname = document.location.pathname;
+		let { pathname } = document.location;
 
 		if (!pathname.endsWith("/")) {
 			pathname = `${pathname}/`;

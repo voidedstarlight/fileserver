@@ -18,7 +18,7 @@ interface FileData {
 	type: "file";
 }
 
-const title_element = document.getElementsByTagName("title")[0];
+const title_element = document.getElementsByTagName("title").item(0);
 
 if (title_element) {
 	title_element.innerText = `${current_path} on ${document.location.hostname}`;

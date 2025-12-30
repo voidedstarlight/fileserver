@@ -4,7 +4,7 @@ import { main } from "../../../util/dom/sectioning";
 import { nthSiblingOf } from "./indexing";
 
 let multi_select = false;
-let selected: HTMLElement[] = [];
+let selected: Array<HTMLElement> = [];
 
 export function isMultiSelecting() {
 	return multi_select;
@@ -31,7 +31,7 @@ function deselectAll() {
 }
 
 export function select(
-	elements?: HTMLElement[] | Element[] | HTMLCollection,
+	elements?: Array<HTMLElement> | Array<Element> | HTMLCollection,
 	cumulate?: boolean
 ) {
 	if (!elements || elements.length === 0) {
@@ -62,7 +62,7 @@ export function select(
 }
 
 export function selectFirstItem() {
-	const first_item = main.children[0];
+	const first_item = main.children.item(0);
 
 	if (!first_item) {
 		return false;

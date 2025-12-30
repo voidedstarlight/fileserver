@@ -1,8 +1,8 @@
 import { createNewDirectoryInput } from "./edit";
 
-import { type MenuEntries } from "../../components/menu";
+import type { menu_entries } from "../../components/menu";
 
-export default function globalContextMenu(): MenuEntries {
+export default function globalContextMenu(): menu_entries {
 	return [
 		{
 			display_name: "New Directory",

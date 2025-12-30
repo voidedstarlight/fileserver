@@ -1,7 +1,7 @@
 import current_path from "../../util/path";
 
-type FSDirReader = FileSystemDirectoryReader;
-type FSEntriesPromise = Promise<FileSystemEntry[]>;
+type dir_reader = FileSystemDirectoryReader;
+type entries_promise = Promise<Array<FileSystemEntry>>;
 
 function affixSlash(path: string) {
 	return path.endsWith("/") ? path : `${path}/`;
@@ -10,7 +10,7 @@ function affixSlash(path: string) {
 async function uploadTransferItem(file: File, path: string) {
 	const reader = new FileReader();
 
-	return await new Promise(resolve => {
+	return new Promise(resolve => {
 		reader.addEventListener("load", event => {
 			if (event.target) {
 				fetch(affixSlash(current_path) + encodeURI(path), {
@@ -33,18 +33,18 @@ async function uploadTransferItem(file: File, path: string) {
 }
 
 async function createFileFromEntry(entry: FileSystemFileEntry): Promise<File> {
-	return await new Promise(resolve => {
+	return new Promise(resolve => {
 		entry.file(resolve);
 	});
 }
 
-async function readDirectoryEntries(reader: FSDirReader): FSEntriesPromise {
-	return await new Promise(resolve => {
+async function readDirectoryEntries(reader: dir_reader): entries_promise {
+	return new Promise(resolve => {
 		reader.readEntries(resolve);
 	});
 }
 
-async function readAllDirectoryEntries(reader: FSDirReader): FSEntriesPromise {
+async function readAllDirectoryEntries(reader: dir_reader): entries_promise {
 	const entries = [];
 	let current_entries = await readDirectoryEntries(reader);
 

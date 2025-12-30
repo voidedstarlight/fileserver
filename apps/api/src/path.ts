@@ -3,8 +3,8 @@ import { resolve } from "path";
 
 function getServingDirectory() {
 	if (
-		"DIRECTORY" in process.env &&
-		typeof process.env.DIRECTORY === "string"
+		"DIRECTORY" in process.env
+		&& typeof process.env.DIRECTORY === "string"
 	) {
 		return process.env.DIRECTORY;
 	}

@@ -63,7 +63,7 @@ export default function createDirectoryView(items: Record<string, boolean>) {
 			return;
 		}
 
-		const key = event.key;
+		const { key } = event;
 
 		if (key === "ArrowUp") {
 			handleArrowUpKey(event);

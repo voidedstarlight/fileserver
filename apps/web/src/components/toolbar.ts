@@ -10,7 +10,7 @@ function createToolbar() {
 }
 
 function getToolbar() {
-	const toolbar = document.getElementsByTagName("header")[0];
+	const toolbar = document.getElementsByTagName("header").item(0);
 
 	if (toolbar) {
 		return toolbar;
@@ -31,11 +31,13 @@ export function addToolbarElement(element: HTMLElement): HTMLElement {
 export function addToolbarButton(
 	text: string,
 	action: event_callback,
-	classList: string[] = []
+	classList: Array<string> = []
 ) {
 	const button = document.createElement("button");
 	button.innerText = text;
 	button.addEventListener("click", action);
+
+	// eslint-disable-next-line @typescript-eslint/naming-convention
 	for (const classItem of classList) {
 		button.classList.add(classItem);
 	}
@@ -47,7 +49,7 @@ export function addToolbarIcon(
 	icon: string,
 	action: event_callback,
 	icon_size = "",
-	classList: string[] = []
+	classList: Array<string> = []
 ): HTMLElement {
 	const button = addToolbarButton("", action, [...classList, "icon"]);
 	button.style.setProperty("--icon", `url('${icon}')`);

@@ -149,13 +149,13 @@ export function createNewDirectoryInput() {
 	}
 
 	createInput(directory_element, () => {
-		const rename_element = document.getElementById("rename") as HTMLInputElement;
+		const rename_element = document.getElementById("rename");
 		requestNewDirectory(rename_element.value);
 	}, (_, is_escape: boolean) => {
 		if (is_escape) {
 			directory_element.remove();
 		} else {
-			const rename_element = document.getElementById("rename") as HTMLInputElement;
+			const rename_element = document.getElementById("rename");
 			requestNewDirectory(rename_element.value);
 		}
 	});

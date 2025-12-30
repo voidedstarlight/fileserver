@@ -2,7 +2,7 @@ import { closePopup, createPopup } from "./popup";
 import { createRenameInput } from "./edit";
 import { getSelectedElements } from "./selection/modify";
 
-import { type MenuEntries } from "../../components/menu";
+import type { menu_entries } from "../../components/menu";
 
 import current_path from "../../util/path";
 
@@ -28,8 +28,8 @@ function getButtonFromEventTarget(target: HTMLElement) {
 	return target;
 }
 
-function deleteFiles(filenames: string[]) {
-	const requests: Promise<Response>[] = [];
+function deleteFiles(filenames: Array<string>) {
+	const requests: Array<Promise<Response>> = [];
 
 	for (const filename of filenames) {
 		const path = ensureSlashSuffix(current_path) + encodeURIComponent(filename);
@@ -47,7 +47,7 @@ function deleteFiles(filenames: string[]) {
 	});
 }
 
-export default function fileContextMenu(event: MouseEvent): MenuEntries {
+export default function fileContextMenu(event: MouseEvent): menu_entries {
 	const menu = document.getElementById("menu");
 
 	if (!menu || !event.target) {
@@ -56,7 +56,7 @@ export default function fileContextMenu(event: MouseEvent): MenuEntries {
 
 	const file_button = getButtonFromEventTarget(event.target as HTMLElement);
 
-	const menu_items: MenuEntries = [];
+	const menu_items: menu_entries = [];
 
 	const selected_items = getSelectedElements();
 	const selected_count = selected_items.length;
@@ -73,7 +73,7 @@ export default function fileContextMenu(event: MouseEvent): MenuEntries {
 			{
 				display_name: "Delete",
 				pressed_callback: () => {
-					const files: string[] = [];
+					const files: Array<string> = [];
 
 					for (const item of selected_items) {
 						const label = item.children[1] as HTMLElement;

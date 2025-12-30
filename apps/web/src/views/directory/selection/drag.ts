@@ -31,7 +31,7 @@ function itemAtPosition(x: number, y: number) {
 }
 
 function dragSelectedItems(selection: HTMLElement) {
-	const selected_items: HTMLElement[] = [];
+	const selected_items: Array<HTMLElement> = [];
 
 	const styles = selection.style;
 
@@ -40,29 +40,29 @@ function dragSelectedItems(selection: HTMLElement) {
 	const left = removePxSuffix(styles.left);
 	const top = removePxSuffix(styles.top);
 
-	let minX = left;
+	let min_x = left;
 
 	if (selection.dataset.negative_width) {
-		minX -= width;
+		min_x -= width;
 	}
 
-	let minY = top;
+	let min_y = top;
 
 	if (selection.dataset.negative_height) {
-		minY -= height;
+		min_y -= height;
 	}
 
-	const maxX = minX + width;
-	const maxY = minY + height;
+	const max_x = min_x + width;
+	const max_y = min_y + height;
 
 	for (const item of main.children) {
 		const positions = item.getBoundingClientRect();
-		const x = positions.x;
+		const { x } = positions;
 		const y = positions.y + window.scrollY;
-		const right = positions.right;
+		const { right } = positions;
 		const bottom = positions.bottom + window.scrollY;
 
-		if (bottom >= minY && maxY >= y && right >= minX && maxX >= x) {
+		if (bottom >= min_y && max_y >= y && right >= min_x && max_x >= x) {
 			selected_items.push(item as HTMLElement);
 		}
 	}
@@ -117,8 +117,7 @@ export function initiateDragSelection() {
 
 		let selection = document.getElementById("drag-selection");
 
-		const drag_x_pos = start_position[0];
-		const drag_y_pos = start_position[1];
+		const [drag_x_pos, drag_y_pos] = start_position;
 
 		if (!selection) {
 			selection = document.createElement("div");

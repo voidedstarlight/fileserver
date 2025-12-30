@@ -1,0 +1,68 @@
+import { resolve } from "path";
+import { rspack } from "@rspack/core";
+
+module.exports = {
+	entry: {
+		main: "./src/main.ts"
+	},
+	experiments: {
+		css: true
+	},
+	module: {
+		rules: [
+			{
+				test: /\.ts$/,
+				exclude: [/node_modules/],
+				use: {
+					loader: "builtin:swc-loader",
+					options: {
+						jsc: {
+							parser: {
+								decorators: true,
+								syntax: "typescript"
+							}
+						},
+						sourcemap: true
+					}
+				}
+			},
+			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: "builtin:lightningcss-loader",
+						options: {
+							targets: ">0.5%"
+						}
+					}
+				],
+				type: "css/auto"
+			},
+			{
+				test: /\.svg$/,
+				type: "asset"
+			}
+		]
+	},
+	plugins: [
+		new rspack.HtmlRspackPlugin({
+			template: "./src/index.html"
+		}),
+		new rspack.CopyRspackPlugin({
+			patterns: [{
+				from: "./public"
+			}]
+		})
+	],
+	output: {
+		path: resolve(process.cwd(), "../../dist/public"),
+		publicPath: "/a/"
+	},
+	performance: {
+		maxAssetSize: 2000000,
+		maxEntrypointSize: 2000000
+	},
+	resolve: {
+		extensions: [".js", ".ts", ".json"]
+	}
+};
