@@ -26,7 +26,6 @@ const uchardet_available = uchardetAvailable();
 initializeTmp();
 
 const server = fastify({
-	ignoreDuplicateSlashes: true,
 	logger: process.env.NODE_ENV !== "production"
 });
 
