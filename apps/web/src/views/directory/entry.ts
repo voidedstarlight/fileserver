@@ -34,8 +34,6 @@ function selectBetween(target: HTMLElement) {
 		return;
 	}
 
-	console.log(target);
-
 	const most_recent = selected.at(-1);
 	const entry_container = most_recent.parentElement;
 
@@ -43,12 +41,12 @@ function selectBetween(target: HTMLElement) {
 
 	const found_elements: Array<HTMLElement> = [];
 
-	console.log(most_recent);
-
 	for (const entry of entry_container.children) {
 		if (entry === target || entry === most_recent) {
 			if (found_start) {
 				found_elements.push(entry);
+				if (entry === most_recent) found_elements = found_elements.toReversed();
+
 				break;
 			}
 
@@ -60,7 +58,7 @@ function selectBetween(target: HTMLElement) {
 		}
 	}
 
-	select(found_elements, isMultiSelecting());
+	select(found_elements, true);
 }
 
 function selectItem(button: number, element: HTMLElement) {
