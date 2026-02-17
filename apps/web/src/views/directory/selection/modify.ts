@@ -4,10 +4,15 @@ import { main } from "../../../util/dom/sectioning";
 import { nthSiblingOf } from "./indexing";
 
 let multi_select = false;
+let select_between = false;
 let selected: Array<HTMLElement> = [];
 
 export function isMultiSelecting() {
 	return multi_select;
+}
+
+export function isSelectingBetween() {
+	return select_between;
 }
 
 export function getSelectedElements() {
@@ -42,18 +47,11 @@ export function select(
 		return selected;
 	}
 
-	if (cumulate) {
-		for (const item of elements) {
-			item.classList.add("selected");
-			selected.push(item as HTMLElement);
-		}
-
-		return selected;
-	}
-
-	deselectAll();
+	if (!cumulate) deselectAll();
 
 	for (const item of elements) {
+		if (selected.includes(item)) continue;
+
 		item.classList.add("selected");
 		selected.push(item as HTMLElement);
 	}
@@ -92,15 +90,15 @@ export function selectByOffset(offset: number) {
 }
 
 window.addEventListener("keydown", event => {
-	if (["Control", "Meta", "Shift"].includes(event.key)) {
-		multi_select = true;
-	}
-
 	if (isEditing()) {
 		return;
 	}
 
-	if (event.key === "a" && (event.metaKey || event.ctrlKey)) {
+	if (["Control", "Meta"].includes(event.key)) {
+		multi_select = true;
+	} else if (event.key == "Shift") {
+		select_between = true;
+	} else if (event.key === "a" && (event.metaKey || event.ctrlKey)) {
 		select(main.children);
 		event.preventDefault();
 		event.stopPropagation();
@@ -108,7 +106,9 @@ window.addEventListener("keydown", event => {
 }, true);
 
 window.addEventListener("keyup", event => {
-	if (["Control", "Meta", "Shift"].includes(event.key)) {
+	if (["Control", "Meta"].includes(event.key)) {
 		multi_select = false;
+	} else if (event.key == "Shift") {
+		select_between = false;
 	}
 });

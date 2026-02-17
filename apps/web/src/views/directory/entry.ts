@@ -1,4 +1,3 @@
-import { isMultiSelecting, select } from "./selection/modify";
 import { main } from "../../util/dom/sectioning";
 
 import createContextMenu from "../../components/menu";
@@ -7,6 +6,13 @@ import filetype from "../../util/filetype";
 import isEditing from "./edit";
 
 import directory_icon from "./directory.svg";
+
+import {
+	getSelectedElements,
+	isMultiSelecting,
+	isSelectingBetween,
+	select
+} from "./selection/modify";
 
 function navigateToRelative(name: string) {
 	if (!isEditing()) {
@@ -20,8 +26,50 @@ function navigateToRelative(name: string) {
 	}
 }
 
+function selectBetween(target: HTMLElement) {
+	const selected = getSelectedElements();
+
+	if (!selected.length) {
+		select([target]);
+		return;
+	}
+
+	console.log(target);
+
+	const most_recent = selected.at(-1);
+	const entry_container = most_recent.parentElement;
+
+	let found_start = false;
+
+	const found_elements: Array<HTMLElement> = [];
+
+	console.log(most_recent);
+
+	for (const entry of entry_container.children) {
+		if (entry === target || entry === most_recent) {
+			if (found_start) {
+				found_elements.push(entry);
+				break;
+			}
+
+			found_start = true;
+		}
+
+		if (found_start) {
+			found_elements.push(entry);
+		}
+	}
+
+	select(found_elements, isMultiSelecting());
+}
+
 function selectItem(button: number, element: HTMLElement) {
 	if (button !== 1 && !element.classList.contains("selected")) {
+		if (isSelectingBetween()) {
+			selectBetween(element);
+			return;
+		}
+
 		select([element], isMultiSelecting());
 	}
 }
