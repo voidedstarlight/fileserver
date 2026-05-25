@@ -41,7 +41,7 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
 
       - name: Generate attestation
-        uses: action/attest@v4
+        uses: actions/attest@v4
         with:
           subject-name: ghcr.io/${{ github.repository }}
           subject-digest: ${{ steps.build.outputs.digest }}
